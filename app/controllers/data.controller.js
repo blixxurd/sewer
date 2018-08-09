@@ -7,11 +7,11 @@ const DataController = () => {
     }
 
     find = (req, res, next) => {
-        res.json({action: 'read'});
+        res.json({action: 'find'});
     }
 
     findAll = (req, res, next) => {
-        res.json({action: 'read'});
+        res.json({action: 'findAll'});
     }
 
     update = (req, res, next) => {
