@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json({app: 'Sewage 1.0' });
+  res.json({
+    message: 'Welcome to Sewage. A place to dump data.'
+  });
 });
 
 module.exports = router;

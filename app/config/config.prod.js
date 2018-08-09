@@ -1,6 +1,6 @@
 const config = {
     mongo: {
-        url: ''
+        url: process.env.MONGO_URL
     }
 };
   
