@@ -1,4 +1,4 @@
-# Sewage Plant
+# Sewer
 
 A lightweight CRUD interface which allows you to dump any data set into a Mongo DB for retrieval or modification later.
 
