@@ -7,4 +7,4 @@ const DataModel = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('RawData', DataModel);
+module.exports = mongoose.model('DataSet', DataModel);

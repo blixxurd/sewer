@@ -6,7 +6,6 @@ const DataController = () => {
         let data = req.body;
         let set = req.params.set;
         console.log(`Adding to set: ${set}`);
-        // sewage.create
         Sewage.create({data_set: set, data: data}).then(
             (result) => {
                 res.json({success: true, result});
@@ -21,18 +20,34 @@ const DataController = () => {
     find = (req, res, next) => {
         let data = req.query;
         let set = req.params.set;
-        // console.log(`Finding from set: ${set}`);
-        // console.log(data);
+        console.log(`Finding from set: ${set}`);
+        console.log(data);
         // sewage.where
         //Sewage.create()
         res.json({action: 'find'});
     }
 
     findAll = (req, res, next) => {
+        let data = req.query;
         let set = req.params.set;
-        // console.log(`Getting all from set: ${set}`);
+        let query = {data_set: set};
+        console.log(`Getting all from set: ${set}`);
         // sewage.where
-        res.json({action: 'findAll', set});
+        Object.keys(data).map((value) => {
+            let query_key = `data.${value}`;
+            query[query_key] = data[value];
+        });
+
+        console.log(query);
+
+        Sewage.where(query).then(
+            (result) => {
+                res.json({success: true, count: result.length, result});
+            },
+            (error) => {
+                res.json({success: false, count: 0, error: error.message});
+            }
+        );
     }
 
     update = (req, res, next) => {
