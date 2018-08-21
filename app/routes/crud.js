@@ -7,9 +7,8 @@ const CrudRouter = (mongoose, config) => {
 
     router.post('/:set', DataController.create);
     router.get('/:set', DataController.findAll);
-    //router.get('/:set/:id', DataController.find);
-    router.put('/:set', DataController.update);
-    router.delete('/:set', DataController.destroy);
+    router.put('/:set/:id', DataController.update);
+    router.delete('/:set/:id', DataController.destroy);
 
     return router;
 }
