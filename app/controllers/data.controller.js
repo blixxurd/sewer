@@ -5,7 +5,10 @@ const DataController = () => {
     returnData = (res) =>  {
         return {
             success: (result) => {
-                res.json({success: true, count: result.length, result});
+                res.json({success: true, count: result.length, result: result});
+            },
+            success_results: (result) => {
+                res.json({success: true, count: result.length, result: result.map((obj) => { return obj.data; })});
             },
             fail: (err) => {
                 res.json({success: false, count: 0, error: err.message});
@@ -43,8 +46,8 @@ const DataController = () => {
             query[query_key] = data[value];
         });
         console.log(query);
-        Sewage.where(query).then(
-            returnData(res).success,
+        Sewage.where(query).select('data').then(
+            returnData(res).success_results,
             returnData(res).fail
         ).catch(returnData(res).fail);
     }
