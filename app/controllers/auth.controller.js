@@ -9,7 +9,7 @@ const DataController = require('../controllers/data.controller');
 const AuthController = (config) => {
 
     const hasValidAuthKey = (req) => {
-        return (req.headers.api_key && (req.headers.api_key == config.key));
+        return (req.headers.key && (req.headers.key == config.key));
     }
 
     return {

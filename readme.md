@@ -13,7 +13,7 @@ It's basically a personal data lake that you can CRUD on. Sewage. Get it? Funny 
 * App should accept connections on port 3000.
 
 ## Adding / Modifying Data
-* Any request used to modify or create data will need to be accompanied by an `api_key` in your request header that matches the one in your config. 
+* Any request used to modify or create data will need to be accompanied by an `key` in your request header that matches the one in your config. 
 * Any set of data can be added through a POST request to `/api/:setName`
   * :setName can be whatever you choose. This allows you to add as many data sets as you want.
   * The ID of the new content will be returned.
