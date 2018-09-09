@@ -1,5 +1,14 @@
 const Sewage = require('../models/data.model');
 
+const IsJsonString = (str) => {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 const DataController = () => {
 
     returnData = (res) =>  {
@@ -8,7 +17,13 @@ const DataController = () => {
                 res.json({success: true, count: result.length, result: result});
             },
             success_results: (result) => {
-                res.json({success: true, count: result.length, result: result.map((obj) => { return obj.data; })});
+                res.json({success: true, count: result.length, result: result.map((obj) => {
+                    let resultSet = {};
+                    Object.keys(obj.data).forEach((key) => {
+                        resultSet[key] = IsJsonString(obj.data[key]) ? JSON.parse(obj.data[key]) : obj.data[key];
+                    });
+                    return resultSet;
+                })});
             },
             fail: (err) => {
                 res.json({success: false, count: 0, error: err.message});
